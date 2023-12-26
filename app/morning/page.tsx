@@ -12,7 +12,7 @@ export default function Morning() {
                 body: JSON.stringify({
                     createdAt: new Date(),
                     isMorning: true,
-                    authorId: "test",
+                    authorId: "easter_egg",
                 }),
                 headers: {
                     "Content-Type": "application/json",
@@ -30,9 +30,6 @@ export default function Morning() {
             } else {
                 console.error("Server responded with an error:", response.status, response.statusText);
             }
-
-            const data = await response.json();
-            console.log(data);
         }; 
 
         postDate();

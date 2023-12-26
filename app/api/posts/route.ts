@@ -1,14 +1,25 @@
-export async function GET(request: Request) {}
- 
-export async function HEAD(request: Request) {}
- 
-export async function POST(request: Request) {}
- 
-export async function PUT(request: Request) {}
- 
-export async function DELETE(request: Request) {}
- 
-export async function PATCH(request: Request) {}
- 
-// If `OPTIONS` is not defined, Next.js will automatically implement `OPTIONS` and  set the appropriate Response `Allow` header depending on the other methods defined in the route handler.
-export async function OPTIONS(request: Request) {}
+export async function POST(request: Request) {
+    const { prisma } = await import("@/lib/prisma");
+    
+    const {createdAt, isMorning, authorId} = await request.json();
+    
+    try {
+        const post = await prisma.post.create({
+            data: {
+                createdAt,
+                isMorning,
+                authorId,
+            },
+        });
+    
+        return new Response(JSON.stringify(post), { 
+            status: 201,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });    
+    } catch (error) {
+        return new Response('Failed to create post', { status: 500 })
+    }
+    
+}
