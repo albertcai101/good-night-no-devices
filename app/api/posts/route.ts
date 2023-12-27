@@ -1,7 +1,7 @@
 export async function POST(request: Request) {
     const { prisma } = await import("@/lib/prisma");
     
-    const {createdAt, isMorning, authorId} = await request.json();
+    const { createdAt, isMorning, authorId } = await request.json();
     
     try {
         const post = await prisma.post.create({

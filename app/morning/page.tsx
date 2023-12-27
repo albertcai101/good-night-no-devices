@@ -1,18 +1,18 @@
 "use client";
 import { useEffect } from 'react';
 import Link from "next/link";
-import { auth, currentUser } from "@clerk/nextjs";
+import { useAuth } from "@clerk/nextjs";
 
 export default function Morning() {
 
+    const { isLoaded, userId, sessionId, getToken } = useAuth();
+
     useEffect(() => {
-        const postDate = async () => {
-            const response = await fetch("/api/posts", {
+        const postUser = async () => {
+            const response = await fetch("/api/users", {
                 method: "POST",
                 body: JSON.stringify({
-                    createdAt: new Date(),
-                    isMorning: true,
-                    authorId: "easter_egg",
+                    id: userId,
                 }),
                 headers: {
                     "Content-Type": "application/json",
@@ -23,18 +23,39 @@ export default function Morning() {
                 // Only parse the response as JSON if there's a response body
                 if (response.headers.get("Content-Type")?.includes("application/json")) {
                     const data = await response.json();
-                    console.log("Data logged:", data);
+                    console.log("user Data logged:", data);
                 } else {
-                    console.log("Response received, but not in JSON format");
+                    console.log("user Response received, but not in JSON format");
                 }
             } else {
-                console.error("Server responded with an error:", response.status, response.statusText);
+                console.error("Failed to log user data");
             }
+
+            const data = await response.json();
+            console.log("User data logged:", data);
+        };
+
+        const postDate = async () => {
+            const response = await fetch("/api/posts", {
+                method: "POST",
+                body: JSON.stringify({
+                    createdAt: new Date(),
+                    isMorning: true,
+                    authorId: userId,
+                }),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            const data = await response.json();
+            console.log("Post data logged:", data);
         }; 
 
+        postUser();
         postDate();
     }
-    , []);
+    , [userId]);
 
     return (
         <div> 
