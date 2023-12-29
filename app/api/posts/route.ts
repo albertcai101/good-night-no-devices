@@ -6,9 +6,9 @@ export async function POST(request: Request) {
     try {
         const post = await prisma.post.create({
             data: {
-                createdAt,
-                isMorning,
-                authorId,
+                createdAt: createdAt,
+                isMorning: isMorning,
+                authorId: authorId,
             },
         });
     

@@ -9,6 +9,7 @@ export default function Morning() {
 
     useEffect(() => {
         const postUser = async () => {
+            console.log("userId:", userId)
             const response = await fetch("/api/users", {
                 method: "POST",
                 body: JSON.stringify({
@@ -20,19 +21,11 @@ export default function Morning() {
             });
 
             if (response.ok) {
-                // Only parse the response as JSON if there's a response body
-                if (response.headers.get("Content-Type")?.includes("application/json")) {
-                    const data = await response.json();
-                    console.log("user Data logged:", data);
-                } else {
-                    console.log("user Response received, but not in JSON format");
-                }
+                const data = await response.json();
+                console.log("User ID upserted:", data);
             } else {
-                console.error("Failed to log user data");
+                console.error("Failed to upsert user ID");
             }
-
-            const data = await response.json();
-            console.log("User data logged:", data);
         };
 
         const postDate = async () => {
@@ -48,8 +41,12 @@ export default function Morning() {
                 },
             });
 
-            const data = await response.json();
-            console.log("Post data logged:", data);
+            if (response.ok) {
+                const data = await response.json();
+                console.log("Post information posted:", data);
+            } else {
+                console.error("Failed to post Post information");
+            }
         }; 
 
         postUser();

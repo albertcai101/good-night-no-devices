@@ -1,13 +1,12 @@
 export async function POST(request: Request) {
     const { prisma } = await import("@/lib/prisma");
-    console.log("hello, can you hear me");
-    const { userId, } = await request.json();
-    
+
+    const { id: userId } = await request.json();
+
     try {
+        console.log('userId', userId)
         const user = await prisma.user.upsert({
-            where: {
-                id: userId,
-            },
+            where: { id: userId },
             update: {},
             create: {
                 id: userId,
@@ -21,7 +20,8 @@ export async function POST(request: Request) {
             }
         });    
     } catch (error) {
-        return new Response('Failed to create user', { status: 500 })
+        console.log(error);
+        return new Response('Failed to upsert user', { status: 500 });
     }
     
 }
