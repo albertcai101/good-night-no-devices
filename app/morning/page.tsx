@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import Link from "next/link";
 import { useAuth } from "@clerk/nextjs";
+import { UserButton } from '@clerk/nextjs';
 
 export default function Morning() {
 
@@ -55,8 +56,19 @@ export default function Morning() {
     , [userId]);
 
     return (
-        <div> 
-            <Link href="/">Good Morning</Link>
+        <div className="flex flex-col min-h-screen p-4">
+            <div className="flex justify-between items-center w-full">
+                <div className="flex-grow text-center">
+                <h1 className="text-2xl font-semibold text-gray-500">Good Night No Devices</h1>
+                </div>
+                <UserButton afterSignOutUrl="/" />
+            </div>
+            <main className="flex flex-col items-center justify-center flex-grow">
+                <span className="mb-4 text-lg text-gray-500">Rise and shine, get off your phone.</span>
+                <Link href="/">
+                    <span className="text-lg cursor-pointer hover:text-gray-300">Home</span>
+                </Link>
+            </main>
         </div>
     )
 }
