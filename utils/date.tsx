@@ -9,3 +9,12 @@ export const toNightOf = (date: Date) => {
 
     return toDateOnly(date);
 }
+
+export const calculateDuration = (startDate: Date, endDate: Date) => {
+    endDate = new Date(endDate);
+    startDate = new Date(startDate);
+
+    const difference = endDate.getTime() - startDate.getTime();
+    const hours = difference / (1000 * 60 * 60);
+    return Math.round(hours * 100) / 100;
+}

@@ -12,11 +12,12 @@ datasource db {
 }
 
 model Post {
-  nightOf   DateTime   @id
-  sleepTime DateTime?
-  wakeTime  DateTime?
-  authorId  String
-  author    User       @relation(fields: [authorId], references: [id])
+  nightOf       DateTime   @id
+  sleepTime     DateTime?
+  wakeTime      DateTime?
+  sleepDuration Decimal?
+  authorId      String
+  author        User       @relation(fields: [authorId], references: [id])
 
   @@index([authorId])
 }

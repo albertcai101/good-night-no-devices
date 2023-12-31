@@ -1,10 +1,22 @@
+import { calculateDuration } from "@/utils/date";
+
 export async function POST(request: Request) {
     const { prisma } = await import("@/lib/prisma");
     
     const { authorId, nightOf, time, isNight } = await request.json();
     
     try {
+        let existingPost = await prisma.post.findUnique({
+            where: {
+                authorId: authorId,
+                nightOf: nightOf,
+            },
+        });
+
         let post;
+
+        
+        // Night Code
         if (isNight) {
             post = await prisma.post.upsert({
                 where: {
@@ -20,7 +32,9 @@ export async function POST(request: Request) {
                     sleepTime: time,
                 },
             });
-        } else {
+        } 
+        // Morning Code
+        else {
             post = await prisma.post.upsert({
                 where: {
                     authorId: authorId,
@@ -28,6 +42,7 @@ export async function POST(request: Request) {
                 },
                 update: {
                     wakeTime: time,
+                    ...(existingPost?.sleepTime && { sleepDuration: calculateDuration(existingPost.sleepTime, time) }),
                 },
                 create: {
                     authorId: authorId,
