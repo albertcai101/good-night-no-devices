@@ -10,12 +10,12 @@ export default function Home() {
       <Header />
       <main className="flex flex-col items-center justify-center flex-grow">
         <div className="mb-4">
-          <Link href="/morning">
-            <span className="mb-18 text-lg cursor-pointer hover:text-gray-300">I just woke up.</span>
+          <Link href="/night">
+            <span className="text-lg cursor-pointer hover:text-gray-300">I'm about to sleep.</span>
           </Link>
         </div>
-        <Link href="/night">
-          <span className="text-lg cursor-pointer hover:text-gray-300">I'm about to sleep.</span>
+        <Link href="/morning">
+          <span className="mb-18 text-lg cursor-pointer hover:text-gray-300">I just woke up.</span>
         </Link>
       </main>
     </div>

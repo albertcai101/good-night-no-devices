@@ -8,7 +8,6 @@ import { postUser, postNight } from '@/utils/db';
 export default function Night() {
 
     const { isLoaded, userId, sessionId, getToken } = useAuth();
-    const offset = -(new Date()).getTimezoneOffset()/60;
     const time = new Date(); 
 
     useEffect(() => {

@@ -8,7 +8,6 @@ import { postUser, postMorning } from '@/utils/db';
 export default function Morning() {
 
     const { isLoaded, userId, sessionId, getToken } = useAuth();
-    const offset = -(new Date()).getTimezoneOffset()/60;
     const time = new Date();
 
     useEffect(() => {
