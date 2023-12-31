@@ -10,9 +10,10 @@ async function main() {
     });
     await prisma.post.create({
         data: {
-            createdAt: new Date(),
-            isMorning: true,
             authorId: "easter_egg",
+            nightOf: "2004-04-16T00:00:00.000Z",
+            sleepTime: "2021-04-04T22:00:00.000Z",
+            wakeTime: "2021-04-05T07:00:00.000Z",
         },
     });
 }

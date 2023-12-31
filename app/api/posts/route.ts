@@ -1,16 +1,41 @@
 export async function POST(request: Request) {
     const { prisma } = await import("@/lib/prisma");
     
-    const { createdAt, isMorning, authorId } = await request.json();
+    const { authorId, nightOf, time, isNight } = await request.json();
     
     try {
-        const post = await prisma.post.create({
-            data: {
-                createdAt: createdAt,
-                isMorning: isMorning,
-                authorId: authorId,
-            },
-        });
+        let post;
+        if (isNight) {
+            post = await prisma.post.upsert({
+                where: {
+                    authorId: authorId,
+                    nightOf: nightOf,
+                },
+                update: {
+                    sleepTime: time,
+                },
+                create: {
+                    authorId: authorId,
+                    nightOf: nightOf,
+                    sleepTime: time,
+                },
+            });
+        } else {
+            post = await prisma.post.upsert({
+                where: {
+                    authorId: authorId,
+                    nightOf: nightOf,
+                },
+                update: {
+                    wakeTime: time,
+                },
+                create: {
+                    authorId: authorId,
+                    nightOf: nightOf,
+                    wakeTime: time,
+                },
+            });
+        }
     
         return new Response(JSON.stringify(post), { 
             status: 201,
@@ -19,7 +44,7 @@ export async function POST(request: Request) {
             }
         });    
     } catch (error) {
+        console.error(error);
         return new Response('Failed to create post', { status: 500 })
     }
-    
 }

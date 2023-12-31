@@ -1,5 +1,6 @@
+import { toNightOf } from "./date";
+
 export const postUser = async (userId: string) => {
-    console.log("userId:", userId)
     const response = await fetch("/api/users", {
         method: "POST",
         body: JSON.stringify({
@@ -18,13 +19,16 @@ export const postUser = async (userId: string) => {
     }
 };
 
-export const postMorning = async (userId: string) => {
+export const postMorning = async (userId: string, time: Date) => {
+    const nightOf = toNightOf(time);
+
     const response = await fetch("/api/posts", {
         method: "POST",
         body: JSON.stringify({
-            createdAt: new Date(),
-            isMorning: true,
             authorId: userId,
+            nightOf: nightOf,
+            time: time,
+            isNight: false,
         }),
         headers: {
             "Content-Type": "application/json",
@@ -39,13 +43,16 @@ export const postMorning = async (userId: string) => {
     }
 }; 
 
-export const postNight = async (userId: string) => {
+export const postNight = async (userId: string, time: Date) => {
+    const nightOf = toNightOf(time);
+
     const response = await fetch("/api/posts", {
         method: "POST",
         body: JSON.stringify({
-            createdAt: new Date(),
-            isMorning: false,
             authorId: userId,
+            nightOf: nightOf,
+            time: time,
+            isNight: true,
         }),
         headers: {
             "Content-Type": "application/json",

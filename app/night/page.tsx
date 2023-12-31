@@ -9,11 +9,14 @@ import { postUser, postNight } from '@/utils/db';
 export default function Night() {
 
     const { isLoaded, userId, sessionId, getToken } = useAuth();
+    const offset = -(new Date()).getTimezoneOffset()/60;
+    const time = new Date(); 
+    time.setTime(time.getTime() + offset * 60 * 60 * 1000);
 
     useEffect(() => {
         if (userId) {
             postUser(userId);
-            postNight(userId);
+            postNight(userId, time);
         }
     }
     , [userId]);

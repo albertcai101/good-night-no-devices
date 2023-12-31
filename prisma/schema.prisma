@@ -12,11 +12,11 @@ datasource db {
 }
 
 model Post {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  isMorning Boolean  @default(false)
+  nightOf   DateTime   @id
+  sleepTime DateTime?
+  wakeTime  DateTime?
   authorId  String
-  author    User     @relation(fields: [authorId], references: [id])
+  author    User       @relation(fields: [authorId], references: [id])
 
   @@index([authorId])
 }
