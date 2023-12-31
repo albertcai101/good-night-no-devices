@@ -9,8 +9,7 @@ export default function Morning() {
 
     const { isLoaded, userId, sessionId, getToken } = useAuth();
     const offset = -(new Date()).getTimezoneOffset()/60;
-    const time = new Date(); 
-    time.setTime(time.getTime() + offset * 60 * 60 * 1000);
+    const time = new Date();
 
     useEffect(() => {
         if (userId) {

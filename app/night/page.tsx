@@ -5,13 +5,11 @@ import Header from '@/components/header';
 import Subpage from '@/components/subpage';
 import { postUser, postNight } from '@/utils/db';
 
-// `app/dashboard/page.tsx` is the UI for the `/dashboard` URL
 export default function Night() {
 
     const { isLoaded, userId, sessionId, getToken } = useAuth();
     const offset = -(new Date()).getTimezoneOffset()/60;
     const time = new Date(); 
-    time.setTime(time.getTime() + offset * 60 * 60 * 1000);
 
     useEffect(() => {
         if (userId) {
