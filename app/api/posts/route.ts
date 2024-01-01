@@ -1,5 +1,7 @@
 import { calculateDuration } from "@/utils/date";
 
+// TODO: do not allow users to post a later wake time, and do not allow users to post
+// a sleep time after wake time is already made.
 export async function POST(request: Request) {
     const { prisma } = await import("@/lib/prisma");
     

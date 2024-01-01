@@ -16,5 +16,5 @@ export const calculateDuration = (startDate: Date, endDate: Date) => {
 
     const difference = endDate.getTime() - startDate.getTime();
     const hours = difference / (1000 * 60 * 60);
-    return Math.round(hours * 100) / 100;
+    return Math.round(hours * 10000) / 10000;
 }

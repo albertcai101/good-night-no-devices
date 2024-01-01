@@ -8,12 +8,14 @@ import { postUser, postMorning } from '@/utils/db';
 export default function Morning() {
 
     const { isLoaded, userId, sessionId, getToken } = useAuth();
-    const time = new Date();
+    const time = new Date(); 
+    const offset = time.getTimezoneOffset() * 60000;
+    const localTime = new Date(time.getTime() - offset);
 
     useEffect(() => {
         if (userId) {
             postUser(userId);
-            postMorning(userId, time);
+            postMorning(userId, localTime);
         }
     }
     , [userId]);

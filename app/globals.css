@@ -25,3 +25,39 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+/* #7156e4, #b8a3f6 */
+.gradient-header {
+  background: linear-gradient(to right, #7156e4, #b8a3f6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent; 
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+.gradient-header:hover {
+  background: linear-gradient(to right, #9879f1, #b8a3f6); 
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent; 
+  cursor: pointer;
+  text-decoration: none; 
+}
+
+
+.gradient-text {
+  cursor: pointer;
+  transition: color 0.3s ease;
+  -webkit-transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.gradient-text:hover {
+  background: linear-gradient(to right, #9879f1, #b8a3f6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
