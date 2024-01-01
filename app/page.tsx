@@ -1,6 +1,4 @@
-import Image from 'next/image';
 import Link from 'next/link';
-import { UserButton } from '@clerk/nextjs';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 

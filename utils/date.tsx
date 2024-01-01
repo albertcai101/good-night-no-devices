@@ -1,13 +1,16 @@
 export const toDateOnly = (date: Date) => {
-    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    let dateOnly = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    dateOnly.setUTCHours(0, 0, 0, 0);
+    return dateOnly;
 }
 
 export const toNightOf = (date: Date) => {
-    if (date.getHours() < 12) {
-        date.setDate(date.getDate() - 1);
+    const sleepDate = new Date(date);
+    if (sleepDate.getHours() < 12) {
+        sleepDate.setDate(sleepDate.getDate() - 1);
     } 
 
-    return toDateOnly(date);
+    return toDateOnly(sleepDate);
 }
 
 export const calculateDuration = (startDate: Date, endDate: Date) => {

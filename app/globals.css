@@ -54,7 +54,7 @@ body {
 }
 
 .gradient-text:hover {
-  background: linear-gradient(to right, #9879f1, #b8a3f6);
+  background: linear-gradient(to right, #b8a3f6, #b8a3f6);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
