@@ -6,7 +6,7 @@ const Header = () => {
         <div className="flex justify-between items-center w-full">
             <div className="flex-grow text-center">
                 <Link href="/">
-                <span className="gradient-header">Good Night No Devices</span>
+                    <span className="gradient-header">Good Night No Devices</span>
                 </Link>
             </div>
             <UserButton afterSignOutUrl="/" />
