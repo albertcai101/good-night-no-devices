@@ -28,11 +28,9 @@ body {
 
 /* #7156e4, #b8a3f6 */
 .gradient-header {
-  background: linear-gradient(to right, #7156e4, #b8a3f6);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent; 
   cursor: pointer;
+  transition: color 0.3s ease;
+  -webkit-transition: background-color 0.3s ease;
   text-decoration: none;
   font-size: 1.5rem;
   font-weight: 900;

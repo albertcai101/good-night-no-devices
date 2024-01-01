@@ -4,6 +4,7 @@ import { useAuth } from "@clerk/nextjs";
 import Header from '@/components/header';
 import Subpage from '@/components/subpage';
 import { postUser, postNight } from '@/utils/db';
+import Footer from '@/components/footer';
 
 export default function Night() {
 
@@ -24,6 +25,7 @@ export default function Night() {
         <div className="flex flex-col min-h-screen p-4">
             <Header />
             <Subpage text="Good night, now put your phone away." />
+            <Footer />
         </div>
     )
 }
