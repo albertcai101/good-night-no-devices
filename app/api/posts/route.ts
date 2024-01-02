@@ -12,8 +12,10 @@ export async function POST(request: Request) {
     try {
         const existingPost = await prisma.post.findUnique({
             where: {
-                authorId: authorId,
-                nightOf: nightOf,
+                authorId_nightOf: {
+                    authorId: authorId,
+                    nightOf: nightOf,
+                },
             },
         });
 
