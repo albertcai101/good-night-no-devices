@@ -65,3 +65,40 @@ export async function POST(request: Request) {
         return new Response('Failed to create post', { status: 500 })
     }
 }
+
+export async function GET(request: Request) {
+    const { prisma } = await import("@/lib/prisma");
+    
+    const { searchParams } = new URL(request.url);
+    const userId = searchParams.get('userId');
+
+    if (!userId) {
+        return new Response('User ID is required', { status: 400 });
+    }
+
+    try {
+        const posts = await prisma.post.findMany({
+            where: {
+                authorId: userId,
+            },
+            orderBy: {
+                nightOf: 'desc',
+            },
+            select: {
+                authorId: true,
+                nightOf: true,
+                sleepDuration: true,
+            },
+        });
+
+        return new Response(JSON.stringify(posts), { 
+            status: 200,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });    
+    } catch (error) {
+        console.error(error);
+        return new Response('Failed to get posts', { status: 500 });
+    }
+}
