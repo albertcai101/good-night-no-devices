@@ -24,8 +24,10 @@ export async function POST(request: Request) {
         if (isNight) {
             post = await prisma.post.upsert({
                 where: {
-                    authorId: authorId,
-                    nightOf: nightOf,
+                    authorId_nightOf: {
+                        authorId: authorId,
+                        nightOf: nightOf,
+                    },
                 },
                 update: {
                     sleepTime: time,
@@ -41,8 +43,10 @@ export async function POST(request: Request) {
         else {
             post = await prisma.post.upsert({
                 where: {
-                    authorId: authorId,
-                    nightOf: nightOf,
+                    authorId_nightOf: {
+                        authorId: authorId,
+                        nightOf: nightOf,
+                    },
                 },
                 update: {
                     wakeTime: time,
