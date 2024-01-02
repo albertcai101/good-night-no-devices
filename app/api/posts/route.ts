@@ -6,9 +6,11 @@ export async function POST(request: Request) {
     const { prisma } = await import("@/lib/prisma");
     
     const { authorId, nightOf, time, isNight } = await request.json();
+
+    console.log("Posting", isNight, "information for", authorId, "on", nightOf);
     
     try {
-        let existingPost = await prisma.post.findUnique({
+        const existingPost = await prisma.post.findUnique({
             where: {
                 authorId: authorId,
                 nightOf: nightOf,

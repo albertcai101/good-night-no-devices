@@ -12,7 +12,7 @@ datasource db {
 }
 
 model Post {
-  nightOf       DateTime   @id
+  nightOf       DateTime
   sleepTime     DateTime?
   wakeTime      DateTime?
   sleepDuration Decimal?
@@ -20,6 +20,8 @@ model Post {
   author        User       @relation(fields: [authorId], references: [id])
 
   @@index([authorId])
+  @@id([authorId, nightOf])
+  @@unique([authorId, nightOf])
 }
 
 model User {
