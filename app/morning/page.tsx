@@ -5,6 +5,7 @@ import Header from '@/components/header';
 import Subpage from '@/components/subpage';
 import { postUser, postMorning } from '@/utils/db';
 import Footer from '@/components/footer';
+import { useRouter } from 'next/navigation';
 
 export default function Morning() {
 
@@ -13,11 +14,21 @@ export default function Morning() {
     const offset = time.getTimezoneOffset() * 60000;
     const localTime = new Date(time.getTime() - offset);
 
+    const router = useRouter();
+
     useEffect(() => {
         if (userId) {
             postUser(userId);
             postMorning(userId, localTime);
         }
+
+        // Set a timeout for redirection
+        const timer = setTimeout(() => {
+            router.push('/'); // Redirect to the home page
+        }, 3000);
+
+        // Cleanup the timer on component unmount
+        return () => clearTimeout(timer);
     }
     , [userId]);
 
