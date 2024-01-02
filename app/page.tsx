@@ -9,7 +9,7 @@ export default function Home() {
         <main className="flex flex-col items-center justify-center flex-grow">
           <div className="mb-8">
             <Link href="/night">
-              <span className="gradient-text text-lg cursor-pointer">I'm about to sleep.</span>
+              <span className="gradient-text text-lg cursor-pointer">I&apos;m about to sleep.</span>
             </Link>
           </div>
           <Link href="/morning">
@@ -20,4 +20,3 @@ export default function Home() {
       </div>
     );
 }
-

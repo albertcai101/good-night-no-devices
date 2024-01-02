@@ -33,7 +33,8 @@ export default function View() {
                         label: 'Sleep Duration',
                         data: data.map((d) => d.sleepDuration),
                         borderColor: '#b8a3f6',
-                        fill: true
+                        fill: false,
+                        tension: 0.4
                     }]
                 };
                 setChartData(formattedData);
@@ -47,7 +48,9 @@ export default function View() {
         <div className="flex flex-col min-h-screen p-4">
             <Header />
             <main className="flex flex-col items-center justify-center flex-grow">
-              <SleepChart data={ chartData }/>
+            <div className="max-w-5xl w-full mx-auto p-4">
+                <SleepChart data={chartData} />
+            </div>
             </main>
             <Footer />
         </div>

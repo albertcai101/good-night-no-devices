@@ -25,7 +25,7 @@ const SleepChart: React.FC<SleepChartProps> = ({ data }) => {
                                 unit: 'day',
                                 tooltipFormat: 'yyyy-MM-dd',
                                 displayFormats: {
-                                    day: 'yyyy-MM-dd'
+                                    day: 'MM-dd'
                                 }
                             },
                             title: {
@@ -34,11 +34,20 @@ const SleepChart: React.FC<SleepChartProps> = ({ data }) => {
                             }
                         },
                         y: {
-                            beginAtZero: true,
+                            beginAtZero: false,
                             title: {
                                 display: true,
                                 text: 'Sleep Duration'
-                            }
+                            },
+                            ticks: {
+                                // If you want to include buffer space above the highest data point
+                                callback: function(value, index, values) {
+                                    return value;
+                                },
+                                // Include some padding on the highest value
+                                padding: 10
+                            },
+                            grace: '5%' // This property adds a percentage as padding above and below your data range
                         }
                     }
                 }                
