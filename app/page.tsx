@@ -18,6 +18,8 @@ export default function Home() {
 
       setMorningTextSize(getDynamicMorningTextSize(localTime) + 'px');
       setNightTextSize(getDynamicNightTextSize(localTime) + 'px');
+
+      console.log('Updated text size to ' + getDynamicMorningTextSize(localTime) + ' and ' + getDynamicNightTextSize(localTime) + '.');
     };
 
     // Update text size immediately and every minute
