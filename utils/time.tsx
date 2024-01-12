@@ -9,7 +9,7 @@ export const getDynamicMorningTextSize = (date : Date) => {
     const radians = (2 * Math.PI / 86400) * adjustedSeconds;
 
     // Sine function for smooth transition, scaled and offset for size
-    const size = (Math.pow(Math.max(Math.sin(radians), 0),40) * 24 + 12).toFixed(2); // Range from 12px to 36px
+    const size = (Math.pow(Math.max(Math.cos(radians), 0),10) * 24 + 12).toFixed(2); // Range from 12px to 36px
     return size;
 };
 
@@ -24,6 +24,6 @@ export const getDynamicNightTextSize = (date : Date) => {
     const radians = (2 * Math.PI / 86400) * adjustedSeconds;
 
     // Sine function for smooth transition, scaled and offset for size
-    const size = (Math.pow(Math.max(Math.sin(radians), 0),40) * 24 + 12).toFixed(2); // Range from 12px to 36px
+    const size = (Math.pow(Math.max(Math.cos(radians), 0),10) * 24 + 12).toFixed(2); // Range from 12px to 36px
     return size;
 };
